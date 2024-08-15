@@ -8,6 +8,70 @@ main {
       width: 100%;
       padding: 0px 80px;
       display: flex;
+
+      .country_section {
+        display: flex;
+        flex-wrap: wrap;
+
+        .country_Card {
+          width: 264px;
+          height: 336px;
+          margin: 75px;
+
+          border-radius: 5px;
+
+          border: 1px solid black;
+
+          box-shadow: 0px 0px 7px 2px #00000008;
+
+          .imgBox {
+            width: 264px;
+            height: 160px;
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
+            overflow: hidden;
+
+            img {
+              width: 264px;
+              height: 160px;
+              object-fit: cover;
+            }
+          }
+
+          .info_box {
+            h2 {
+              margin: 24px;
+              font-family: 'Nunito Sans', sans-serif;
+              font-size: 18px;
+              font-weight: 800;
+              line-height: 26px;
+              text-align: left;
+            }
+            .country_info {
+              margin: 16px 0px 0px 24px;
+
+              p:not(:last-child) {
+                margin-bottom: 8px;
+              }
+              p {
+                font-family: 'Nunito Sans', sans-serif;
+                font-size: 14px;
+                font-weight: 600;
+                line-height: 16px;
+                text-align: left;
+
+                span {
+                  font-family: 'Nunito Sans', sans-serif;
+                  font-size: 14px;
+                  font-weight: 300;
+                  line-height: 16px;
+                  text-align: left;
+                }
+              }
+            }
+          }
+        }
+      }
     }
   }
 }

@@ -35,19 +35,25 @@ const CountrySection = () => {
           {loading ? (
             <p>Loading...</p>
           ) : (
-            <div>
+            <div className={styles.country_section}>
               {countrys.map((country) => {
                 return (
-                  <div>
-                    <div>
+                  <div className={styles.country_Card}>
+                    <div className={styles.imgBox}>
                       <img src={country.flags.png} alt='flag' />
                     </div>
-                    <div>
+                    <div className={styles.info_box}>
                       <h2>{country.name.common}</h2>
-                      <div>
-                        <p>Population: {country.population}</p>
-                        <p>Region: {country.region}</p>
-                        <p>Capital: {country.capital}</p>
+                      <div className={styles.country_info}>
+                        <p>
+                          Population: <span>{country.population}</span>
+                        </p>
+                        <p>
+                          Region: <span>{country.region}</span>
+                        </p>
+                        <p>
+                          Capital: <span>{country.capital}</span>
+                        </p>
                       </div>
                     </div>
                   </div>
