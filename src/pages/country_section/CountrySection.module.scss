@@ -1,5 +1,13 @@
-.header_container {
-  width: 20px;
-  height: 20px;
-  background-color: red;
+main {
+  .main_container {
+    max-width: 1440px;
+    margin: 0 auto;
+    margin-top: 48px;
+
+    .main_content {
+      width: 100%;
+      padding: 0px 80px;
+      display: flex;
+    }
+  }
 }
