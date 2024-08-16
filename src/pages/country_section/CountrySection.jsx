@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 import styles from './CountrySection.module.scss';
+import FilterBtn from '../../components/filterButton/FilterBtn';
 
 const CountrySection = () => {
   const [countrys, setCountrys] = useState();
