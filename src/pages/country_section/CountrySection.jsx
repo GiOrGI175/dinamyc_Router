@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 
 import styles from './CountrySection.module.scss';
 import FilterBtn from '../../components/filterButton/FilterBtn';
@@ -6,6 +7,12 @@ import FilterBtn from '../../components/filterButton/FilterBtn';
 const CountrySection = () => {
   const [countrys, setCountrys] = useState();
   const [loading, setLoading] = useState(true);
+  const [totalitems, setTotalitems] = useState(0);
+
+  const itemsPerPage = 8;
+  const navigate = useNavigate();
+  const { page } = useParams();
+  const currentPage = parseInt(page, 10) || 1;
 
   useEffect(() => {
     const fetchData = async () => {
@@ -16,6 +23,7 @@ const CountrySection = () => {
         }
         const data = await res.json();
         setCountrys(data);
+        setTotalitems(data.length);
         setLoading(false);
       } catch (error) {
         console.log('error data', error);
@@ -27,6 +35,17 @@ const CountrySection = () => {
 
   console.log(countrys);
 
+  const totalPages = Math.ceil(totalitems / itemsPerPage);
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  const currenItems = countrys ? countrys.slice(startIndex, endIndex) : [];
+
+  const handlePageChange = (page) => {
+    if (page >= 1 && page <= totalPages) {
+      navigate(`/posts/${page}`);
+    }
+  };
+
   return (
     <main>
       <FilterBtn />
@@ -36,9 +55,12 @@ const CountrySection = () => {
             <p>Loading...</p>
           ) : (
             <div className={styles.country_section}>
-              {countrys.map((country) => {
+              {currenItems.map((country) => {
                 return (
-                  <div className={styles.country_Card}>
+                  <div
+                    key={country.name.common}
+                    className={styles.country_Card}
+                  >
                     <div className={styles.imgBox}>
                       <img src={country.flags.png} alt='flag' />
                     </div>
@@ -59,6 +81,24 @@ const CountrySection = () => {
                   </div>
                 );
               })}
+
+              <div>
+                <button
+                  onClick={() => handlePageChange(currentPage - 1)}
+                  disabled={currentPage === 1}
+                >
+                  Previous
+                </button>
+                <span>
+                  Page {currentPage} of {totalPages}
+                </span>
+                <button
+                  onClick={() => handlePageChange(currentPage + 1)}
+                  disabled={currentPage === totalPages}
+                >
+                  Next
+                </button>
+              </div>
             </div>
           )}
         </div>
