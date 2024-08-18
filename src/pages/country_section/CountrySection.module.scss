@@ -2,27 +2,23 @@ main {
   .main_container {
     max-width: 1440px;
     margin: 0 auto;
-    margin-top: 48px;
 
     .main_content {
       width: 100%;
-      padding: 0px 80px;
       display: flex;
 
       .country_section {
+        padding-left: 75px;
         display: flex;
         flex-wrap: wrap;
 
         .country_Card {
           width: 264px;
           height: 336px;
-          margin: 75px;
-
-          border-radius: 5px;
-
-          border: 1px solid black;
-
-          box-shadow: 0px 0px 7px 2px #00000008;
+          margin: 0px 75px 75px 0px;
+          background-color: #ffffff;
+          border-radius: 8px;
+          box-shadow: 0px 20px 20px 40px #00000008;
 
           .imgBox {
             width: 264px;
@@ -30,6 +26,7 @@ main {
             border-top-left-radius: 5px;
             border-top-right-radius: 5px;
             overflow: hidden;
+            box-shadow: 0px 40px 5px 0px #00000008;
 
             img {
               width: 264px;
@@ -67,6 +64,61 @@ main {
                   line-height: 16px;
                   text-align: left;
                 }
+              }
+            }
+          }
+        }
+        .buttons_continer {
+          width: 100%;
+          display: flex;
+          justify-content: center;
+          margin-bottom: 45px;
+
+          .buttons_content {
+            width: 300px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            button {
+              cursor: pointer;
+              width: 100px;
+              height: 56px;
+              border: none;
+              border-radius: 5px;
+              box-shadow: 0px 4px 9px 0px #0000000e;
+              background-color: transparent;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              transition: all 0.5s ease;
+
+              div {
+                width: 12px;
+                height: 12px;
+
+                .perv_arrow {
+                  margin-right: 10px;
+                  object-fit: contain;
+                  width: 12px;
+                  height: 12px;
+                  transform: rotate(90deg);
+                }
+              }
+              div {
+                width: 12px;
+                height: 12px;
+
+                .next_arrow {
+                  object-fit: contain;
+                  width: 12px;
+                  height: 12px;
+                  transform: rotate(-90deg);
+                }
+              }
+
+              &:hover {
+                opacity: 0.5;
               }
             }
           }

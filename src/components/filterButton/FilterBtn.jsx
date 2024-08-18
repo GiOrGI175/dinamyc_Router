@@ -1,14 +1,18 @@
 import React, { useState } from 'react';
-
-import arrow from '/arrow.svg';
-
 import styles from './filterBtn.module.scss';
 
-const FilterBtn = () => {
+const FilterBtn = ({ arrow, regions, onRegionSelect }) => {
   const [filter, setFilter] = useState(false);
 
   const handleArrow = () => {
-    setFilter((perv) => !perv);
+    setFilter((prev) => !prev);
+  };
+
+  const handleRegionClick = (region) => {
+    if (onRegionSelect) {
+      onRegionSelect(region);
+    }
+    setFilter(false);
   };
 
   return (
@@ -20,25 +24,27 @@ const FilterBtn = () => {
             <div>
               <img
                 src={arrow}
-                alt='arrow'
-                className={`${styles.Arrowimg} ${
-                  filter ? styles['rotate'] : ''
-                }`}
+                alt='Arrow indicating filter dropdown'
+                className={`${styles.Arrowimg} ${filter ? styles.rotate : ''}`}
               />
             </div>
           </button>
           <div className={styles.region_container}>
             <div
               className={`${styles.region_content} ${
-                filter ? styles['show'] : ''
+                filter ? styles.show : ''
               }`}
             >
               <ul>
-                <li>Africa</li>
-                <li>America</li>
-                <li>Asia</li>
-                <li>Europe</li>
-                <li>Oceania</li>
+                {regions.length > 0 ? (
+                  regions.map((region) => (
+                    <li key={region} onClick={() => handleRegionClick(region)}>
+                      {region}
+                    </li>
+                  ))
+                ) : (
+                  <li>No regions available</li>
+                )}
               </ul>
             </div>
           </div>
