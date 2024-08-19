@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams, Link } from 'react-router-dom';
 import arrow from '/arrow.svg';
 import styles from './CountrySection.module.scss';
 import FilterBtn from '../../components/filterButton/FilterBtn';
@@ -94,7 +94,9 @@ const CountrySection = () => {
                       />
                     </div>
                     <div className={styles.info_box}>
-                      <h2>{country.name.common}</h2>
+                      <Link to={`/posts/${currentPage}/${country.name.common}`}>
+                        <h2>{country.name.common}</h2>
+                      </Link>
                       <div className={styles.country_info}>
                         <p>
                           Population: <span>{country.population}</span>
