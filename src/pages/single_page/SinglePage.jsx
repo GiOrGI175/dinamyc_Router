@@ -89,7 +89,7 @@ const SinglePage = () => {
                       </div>
                       <div>
                         <p>Top Level Domain: {countrtInfo.tld}</p>
-                        <p>Currencies: {countrtInfo.currencies.EUR.name}</p>
+                        {/* <p>Currencies: {countrtInfo.currencie}</p> shecdoamaaa aq */}
                         <p>Languages: {renderInfo(countrtInfo.languages)}</p>
                       </div>
                       <div>
