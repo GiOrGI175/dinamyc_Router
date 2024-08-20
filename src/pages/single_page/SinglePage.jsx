@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 import styles from './SinglePage.module.scss';
 
 const SinglePage = () => {
-  const [countrys, setCountrys] = useState();
+  const [countrys, setCountrys] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -41,8 +41,20 @@ const SinglePage = () => {
           <div>
             <button></button>
           </div>
-          <div className={styles.country_card}>
-            <div className=''></div>
+          <div>
+            {loading ? (
+              <div>Loading...</div>
+            ) : error ? (
+              <p>{error}</p>
+            ) : (
+              <div>
+                {countrys.map((countrtInfo) => (
+                  <div key={countrtInfo.name.common}>
+                    <h1>{countrtInfo.name.common}</h1>
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
         </div>
       </div>
