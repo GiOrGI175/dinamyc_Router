@@ -34,12 +34,28 @@ const SinglePage = () => {
 
   console.log(countrys);
 
+  const renderInfo = (info) => {
+    if (Array.isArray(info)) {
+      return info.length > 0 ? info.join(', ') : 'No Information Here';
+    } else if (typeof info === 'string') {
+      return info.trim() !== '' ? info : 'No Information Here';
+    } else if (info && typeof info === 'object') {
+      if (Object.keys(info).length > 0) {
+        return Object.values(info).join(', ');
+      } else {
+        return 'No Information Here';
+      }
+    } else {
+      return 'No Information Here';
+    }
+  };
+
   return (
     <section>
       <div className={styles.section_container}>
         <div className={styles.section_content}>
           <div>
-            <button></button>
+            <button>go bk</button>
           </div>
           <div>
             {loading ? (
@@ -48,9 +64,40 @@ const SinglePage = () => {
               <p>{error}</p>
             ) : (
               <div>
+                <div>
+                  {countrys.map((countrtInfo) => (
+                    <div>
+                      <img
+                        src={countrtInfo.flags.png}
+                        alt={`Flag of ${countrtInfo.name.common}`}
+                      />
+                    </div>
+                  ))}
+                </div>
                 {countrys.map((countrtInfo) => (
-                  <div key={countrtInfo.name.common}>
-                    <h1>{countrtInfo.name.common}</h1>
+                  <div
+                    className={styles.country_Card}
+                    key={countrtInfo.name.common}
+                  >
+                    <div className={styles.country_info}>
+                      <div>
+                        <h2>Native Name: {countrtInfo.name.common}</h2>
+                        <p>Population:{countrtInfo.altSpellings[1]}</p>
+                        <p>Region: {countrtInfo.population}</p>
+                        <p>Sub Region: {countrtInfo.region}</p>
+                        <p>Capital: {countrtInfo.capital}</p>
+                      </div>
+                      <div>
+                        <p>Top Level Domain: {countrtInfo.tld}</p>
+                        <p>Currencies: {countrtInfo.currencies.EUR.name}</p>
+                        <p>Languages: {renderInfo(countrtInfo.languages)}</p>
+                      </div>
+                      <div>
+                        <p>
+                          Border Countries: {renderInfo(countrtInfo.borders)}
+                        </p>
+                      </div>
+                    </div>
                   </div>
                 ))}
               </div>
