@@ -13,97 +13,105 @@
 
     .country_Card {
       width: 100%;
-      padding-top: 80px;
+      max-width: 100%;
+      margin-top: 80px;
+      border: 1px solid pink;
+      // padding-top: 80px;
       display: flex;
-      justify-content: space-between;
+      align-items: center;
 
       .imgBox {
-        width: 560px;
-        height: 401px;
-        border-radius: 8px;
-        overflow: hidden;
+        width: 100%;
+        // margin-right: 120px;
+        display: flex;
+        justify-content: center;
 
         img {
+          margin-right: 120px;
+          width: 100%;
+          max-width: 560px;
+          max-height: 401px;
+          border-radius: 8px;
           object-fit: cover;
-          width: 560px;
-          height: 401px;
         }
       }
 
-      .country_info_Container {
+      .country_info {
         max-width: 598px;
-        height: 323px;
-        border: 2px solid salmon;
+        max-height: 323px;
 
-        .country_info_Content {
-          width: 100%;
+        width: 100%;
 
-          .country_info {
-            width: 100%;
+        .country_NameBox {
+          h1 {
+            margin-bottom: 23px;
+            font-family: 'Nunito Sans', sans-serif;
+            font-size: 32px;
+            font-weight: 800;
+            line-height: 43.65px;
+            text-align: left;
+          }
+        }
+        .flex_box {
+          display: flex;
+          justify-content: space-between;
 
-            .country_NameBox {
-              h1 {
+          .Info_continer_1 {
+            p {
+              font-family: 'Nunito Sans', sans-serif;
+              font-size: 16px;
+              font-weight: 600;
+              line-height: 32px;
+              text-align: left;
+
+              span {
                 font-family: 'Nunito Sans', sans-serif;
-                font-size: 32px;
-                font-weight: 800;
-                line-height: 43.65px;
+                font-size: 16px;
+                font-weight: 400;
+                line-height: 32px;
                 text-align: left;
               }
             }
-            .flex_box {
-              display: flex;
+          }
+          .Info_continer_2 {
+            p {
+              font-family: 'Nunito Sans', sans-serif;
+              font-size: 16px;
+              font-weight: 600;
+              line-height: 32px;
+              text-align: left;
 
-              .Info_continer_1 {
-                p {
-                  font-family: 'Nunito Sans', sans-serif;
-                  font-size: 16px;
-                  font-weight: 600;
-                  line-height: 32px;
-                  text-align: left;
-
-                  span {
-                    font-family: 'Nunito Sans', sans-serif;
-                    font-size: 16px;
-                    font-weight: 400;
-                    line-height: 32px;
-                    text-align: left;
-                  }
-                }
+              span {
+                font-family: 'Nunito Sans', sans-serif;
+                font-size: 16px;
+                font-weight: 400;
+                line-height: 32px;
+                text-align: left;
               }
-              .Info_continer_2 {
-                p {
-                  font-family: 'Nunito Sans', sans-serif;
-                  font-size: 16px;
-                  font-weight: 600;
-                  line-height: 32px;
-                  text-align: left;
+            }
+          }
+        }
+        .Info_continer_3 {
+          margin-top: 68px;
+          p {
+            font-family: 'Nunito Sans', sans-serif;
+            font-size: 16px;
+            font-weight: 600;
+            line-height: 24px;
+            text-align: left;
 
-                  span {
-                    font-family: 'Nunito Sans', sans-serif;
-                    font-size: 16px;
-                    font-weight: 400;
-                    line-height: 32px;
-                    text-align: left;
-                  }
-                }
-              }
-              .Info_continer_3 {
-                p {
-                  font-family: 'Nunito Sans', sans-serif;
-                  font-size: 16px;
-                  font-weight: 600;
-                  line-height: 24px;
-                  text-align: left;
-
-                  span {
-                    font-family: 'Nunito Sans', sans-serif;
-                    font-size: 16px;
-                    font-weight: 400;
-                    line-height: 24px;
-                    text-align: left;
-                  }
-                }
-              }
+            span {
+              margin: 10px;
+              width: 96px;
+              height: 28px;
+              border: 1px solid #979797;
+              box-shadow: 0px 0px 4px 1px #0000001b;
+              background-color: #ffffff;
+              font-family: 'Nunito Sans', sans-serif;
+              font-size: 16px;
+              font-weight: 400;
+              line-height: 24px;
+              text-align: left;
             }
           }
         }

@@ -58,6 +58,20 @@ const SinglePage = () => {
     }
   };
 
+  const renderBorderCountrys = (info) => {
+    if (Array.isArray(info) && info.length > 0) {
+      return info.join(', ');
+    } else if (
+      info &&
+      typeof info === 'object' &&
+      Object.keys(info).length > 0
+    ) {
+      return Object.values(info).join(', ');
+    } else {
+      return 'No Information Here';
+    }
+  };
+
   const renderCurrencies = (currencies) => {
     if (
       currencies &&
@@ -84,76 +98,74 @@ const SinglePage = () => {
           <div className={styles.button_container}>
             <button>Go Back</button>
           </div>
-          <div className={styles.country_info_Container}>
-            {loading ? (
-              <div>Loading...</div>
-            ) : error ? (
-              <p>{error}</p>
-            ) : countryToUse ? (
-              <div className={styles.country_Card}>
-                <div className={styles.imgBox}>
-                  <img
-                    src={countryToUse.flags?.png}
-                    alt={`Flag of ${countryToUse.name?.common}`}
-                    className={styles.flag_image}
-                  />
+          {loading ? (
+            <div>Loading...</div>
+          ) : error ? (
+            <p>{error}</p>
+          ) : countryToUse ? (
+            <div className={styles.country_Card}>
+              <div className={styles.imgBox}>
+                <img
+                  src={countryToUse.flags?.png}
+                  alt={`Flag of ${countryToUse.name?.common}`}
+                  className={styles.flag_image}
+                />
+              </div>
+              <div className={styles.country_info}>
+                <div className={styles.country_NameBox}>
+                  <h1>{countryToUse.name.common}</h1>
                 </div>
-
-                <div className={styles.country_info_Content}>
-                  <div className={styles.country_info}>
-                    <div className={styles.country_NameBox}>
-                      <h1>{countryToUse.name.common}</h1>
-                    </div>
-                    <div className={styles.flex_box}>
-                      <div className={styles.Info_continer_1}>
-                        <p>
-                          Native Name:{' '}
-                          <span>{countryToUse.altSpellings[1]}</span>
-                        </p>
-                        <p>
-                          Population: <span>{countryToUse.population}</span>
-                        </p>
-                        <p>
-                          Region: <span>{countryToUse.region}</span>
-                        </p>
-                        <p>
-                          Sub Region: <span>{countryToUse.subregion}</span>
-                        </p>
-                        <p>
-                          Capital:{' '}
-                          <span>{renderInfo(countryToUse.capital)}</span>
-                        </p>
-                      </div>
-                      <div className={styles.Info_continer_2}>
-                        <p>
-                          Top Level Domain:{' '}
-                          <span>{renderInfo(countryToUse.tld)}</span>
-                        </p>
-                        <p>
-                          Currencies:{' '}
-                          <span>
-                            {renderCurrencies(countryToUse.currencies)}
-                          </span>
-                        </p>
-                        <p>
-                          Languages:{' '}
-                          <span>{renderInfo(countryToUse.languages)}</span>
-                        </p>
-                      </div>
-                    </div>
-                    <div className={styles.Info_continer_3}>
-                      <p>
-                        Border Countries:{' '}
-                        <span>{renderInfo(countryToUse.borders)}</span>
-                      </p>
-                    </div>
+                <div className={styles.flex_box}>
+                  <div className={styles.Info_continer_1}>
+                    <p>
+                      Native Name: <span>{countryToUse.altSpellings[1]}</span>
+                    </p>
+                    <p>
+                      Population: <span>{countryToUse.population}</span>
+                    </p>
+                    <p>
+                      Region: <span>{countryToUse.region}</span>
+                    </p>
+                    <p>
+                      Sub Region: <span>{countryToUse.subregion}</span>
+                    </p>
+                    <p>
+                      Capital: <span>{renderInfo(countryToUse.capital)}</span>
+                    </p>
+                  </div>
+                  <div className={styles.Info_continer_2}>
+                    <p>
+                      Top Level Domain:{' '}
+                      <span>{renderInfo(countryToUse.tld)}</span>
+                    </p>
+                    <p>
+                      Currencies:{' '}
+                      <span>{renderCurrencies(countryToUse.currencies)}</span>
+                    </p>
+                    <p>
+                      Languages:{' '}
+                      <span>{renderInfo(countryToUse.languages)}</span>
+                    </p>
                   </div>
                 </div>
+                <div className={styles.Info_continer_3}>
+                  <p>
+                    Border Countries:
+                    {countryToUse.borders.map((border, index) => (
+                      <span key={index}>
+                        {renderBorderCountrys(border)}
+                        {index < countryToUse.borders.length - 1
+                          ? ', '
+                          : ''}{' '}
+                      </span>
+                    ))}
+                  </p>
+                </div>
               </div>
-            ) : (
-              <div>No country information available</div>
-            )}
-          </div>
+            </div>
+          ) : (
+            <div>No country information available</div>
+          )}
         </div>
       </div>
     </section>
