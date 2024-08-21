@@ -22,7 +22,15 @@ const SinglePage = () => {
           throw new Error('Network response was not ok');
         }
         const data = await res.json();
-        setCountrys(data);
+
+        const uniqueCountries = data.filter(
+          (item, index, self) =>
+            index === self.findIndex((t) => t.cca3 === item.cca3)
+        );
+
+        console.log(uniqueCountries);
+
+        setCountrys(uniqueCountries);
         setLoading(false);
       } catch (error) {
         setError(error);
@@ -50,62 +58,76 @@ const SinglePage = () => {
     }
   };
 
+  const renderCurrencies = (currencies) => {
+    if (
+      currencies &&
+      typeof currencies === 'object' &&
+      Object.keys(currencies).length > 0
+    ) {
+      return Object.values(currencies)
+        .map((currency) => currency.name || 'Unknown Currency')
+        .join(', ');
+    }
+    return 'No Information Here';
+  };
+
+  console.log(countrys.length);
+
+  console.log(countrys.length > 2);
+
+  const countryToUse = countrys.length > 1 ? countrys[1] : countrys[0] || null;
+
   return (
     <section>
       <div className={styles.section_container}>
         <div className={styles.section_content}>
           <div>
-            <button>go bk</button>
+            <button onClick={() => window.history.back()}>Go Back</button>
           </div>
           <div>
             {loading ? (
               <div>Loading...</div>
             ) : error ? (
               <p>{error}</p>
-            ) : (
+            ) : countryToUse ? (
               <div>
                 <div>
-                  {countrys.map((countrtInfo) => (
-                    <div>
-                      <img
-                        src={countrtInfo.flags.png}
-                        alt={`Flag of ${countrtInfo.name.common}`}
-                      />
-                    </div>
-                  ))}
+                  <img
+                    src={countryToUse.flags?.png}
+                    alt={`Flag of ${countryToUse.name?.common}`}
+                    className={styles.flag_image}
+                  />
                 </div>
-                {countrys.map((countrtInfo) => (
-                  <div
-                    className={styles.country_Card}
-                    key={countrtInfo.name.common}
-                  >
-                    <div className={styles.country_info}>
-                      <div>
-                        <h2>Native Name: {countrtInfo.name.common}</h2>
-                        <p>Population:{countrtInfo.altSpellings[1]}</p>
-                        <p>Region: {countrtInfo.population}</p>
-                        <p>Sub Region: {countrtInfo.region}</p>
-                        <p>Capital: {countrtInfo.capital}</p>
-                      </div>
-                      <div>
-                        <p>Top Level Domain: {countrtInfo.tld}</p>
-                        {/* <p>Currencies: {countrtInfo.currencie}</p> shecdoamaaa aq */}
-                        <p>Languages: {renderInfo(countrtInfo.languages)}</p>
-                      </div>
-                      <div>
-                        <p>
-                          Border Countries: {renderInfo(countrtInfo.borders)}
-                        </p>
-                      </div>
+                <div className={styles.country_Card}>
+                  <div className={styles.country_info}>
+                    <div>
+                      <h2>Native Name: {countryToUse.name?.common}</h2>
+                      <p>Population: {countryToUse.population}</p>
+                      <p>Region: {countryToUse.region}</p>
+                      <p>Sub Region: {countryToUse.subregion}</p>
+                      <p>Capital: {renderInfo(countryToUse.capital)}</p>
+                    </div>
+                    <div>
+                      <p>Top Level Domain: {renderInfo(countryToUse.tld)}</p>
+                      <p>
+                        Currencies: {renderCurrencies(countryToUse.currencies)}
+                      </p>
+                      <p>Languages: {renderInfo(countryToUse.languages)}</p>
+                    </div>
+                    <div>
+                      <p>
+                        Border Countries: {renderInfo(countryToUse.borders)}
+                      </p>
                     </div>
                   </div>
-                ))}
+                </div>
               </div>
+            ) : (
+              <div>No country information available</div>
             )}
           </div>
         </div>
       </div>
-      {/* <h1>{country}</h1> */}
     </section>
   );
 };
