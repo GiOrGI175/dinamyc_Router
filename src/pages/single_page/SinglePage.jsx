@@ -148,7 +148,7 @@ const SinglePage = () => {
                     </p>
                   </div>
                 </div>
-                <div className={styles.Info_continer_3}>
+                {/* <div className={styles.Info_continer_3}>
                   <p>
                     Border Countries:
                     {countryToUse.borders.map((border, index) => (
@@ -160,7 +160,7 @@ const SinglePage = () => {
                       </span>
                     ))}
                   </p>
-                </div>
+                </div> */}
               </div>
             </div>
           ) : (
