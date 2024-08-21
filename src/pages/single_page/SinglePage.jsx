@@ -81,42 +81,70 @@ const SinglePage = () => {
     <section>
       <div className={styles.section_container}>
         <div className={styles.section_content}>
-          <div>
-            <button onClick={() => window.history.back()}>Go Back</button>
+          <div className={styles.button_container}>
+            <button>Go Back</button>
           </div>
-          <div>
+          <div className={styles.country_info_Container}>
             {loading ? (
               <div>Loading...</div>
             ) : error ? (
               <p>{error}</p>
             ) : countryToUse ? (
-              <div>
-                <div>
+              <div className={styles.country_Card}>
+                <div className={styles.imgBox}>
                   <img
                     src={countryToUse.flags?.png}
                     alt={`Flag of ${countryToUse.name?.common}`}
                     className={styles.flag_image}
                   />
                 </div>
-                <div className={styles.country_Card}>
+
+                <div className={styles.country_info_Content}>
                   <div className={styles.country_info}>
-                    <div>
-                      <h2>Native Name: {countryToUse.name?.common}</h2>
-                      <p>Population: {countryToUse.population}</p>
-                      <p>Region: {countryToUse.region}</p>
-                      <p>Sub Region: {countryToUse.subregion}</p>
-                      <p>Capital: {renderInfo(countryToUse.capital)}</p>
+                    <div className={styles.country_NameBox}>
+                      <h1>{countryToUse.name.common}</h1>
                     </div>
-                    <div>
-                      <p>Top Level Domain: {renderInfo(countryToUse.tld)}</p>
-                      <p>
-                        Currencies: {renderCurrencies(countryToUse.currencies)}
-                      </p>
-                      <p>Languages: {renderInfo(countryToUse.languages)}</p>
+                    <div className={styles.flex_box}>
+                      <div className={styles.Info_continer_1}>
+                        <p>
+                          Native Name:{' '}
+                          <span>{countryToUse.altSpellings[1]}</span>
+                        </p>
+                        <p>
+                          Population: <span>{countryToUse.population}</span>
+                        </p>
+                        <p>
+                          Region: <span>{countryToUse.region}</span>
+                        </p>
+                        <p>
+                          Sub Region: <span>{countryToUse.subregion}</span>
+                        </p>
+                        <p>
+                          Capital:{' '}
+                          <span>{renderInfo(countryToUse.capital)}</span>
+                        </p>
+                      </div>
+                      <div className={styles.Info_continer_2}>
+                        <p>
+                          Top Level Domain:{' '}
+                          <span>{renderInfo(countryToUse.tld)}</span>
+                        </p>
+                        <p>
+                          Currencies:{' '}
+                          <span>
+                            {renderCurrencies(countryToUse.currencies)}
+                          </span>
+                        </p>
+                        <p>
+                          Languages:{' '}
+                          <span>{renderInfo(countryToUse.languages)}</span>
+                        </p>
+                      </div>
                     </div>
-                    <div>
+                    <div className={styles.Info_continer_3}>
                       <p>
-                        Border Countries: {renderInfo(countryToUse.borders)}
+                        Border Countries:{' '}
+                        <span>{renderInfo(countryToUse.borders)}</span>
                       </p>
                     </div>
                   </div>
