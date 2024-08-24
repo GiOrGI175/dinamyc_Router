@@ -1,8 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+import ThemeContext from '../useContext/themeContext';
 import styles from './filterBtn.module.scss';
+
+import dark_arrow from '/DarkMode_Arrow.svg';
 
 const FilterBtn = ({ arrow, regions, onRegionSelect }) => {
   const [filter, setFilter] = useState(false);
+
+  const { isDark } = useContext(ThemeContext);
 
   const handleArrow = () => {
     setFilter((prev) => !prev);
@@ -19,11 +24,14 @@ const FilterBtn = ({ arrow, regions, onRegionSelect }) => {
     <div className={styles.filter_container}>
       <div className={styles.filter_content}>
         <div>
-          <button onClick={handleArrow}>
+          <button
+            className={`${styles.button} ${isDark ? styles['DarkMode'] : ''}`}
+            onClick={handleArrow}
+          >
             <span>Filter by Region</span>
             <div>
               <img
-                src={arrow}
+                src={isDark ? dark_arrow : arrow}
                 alt='Arrow indicating filter dropdown'
                 className={`${styles.Arrowimg} ${filter ? styles.rotate : ''}`}
               />
@@ -33,7 +41,7 @@ const FilterBtn = ({ arrow, regions, onRegionSelect }) => {
             <div
               className={`${styles.region_content} ${
                 filter ? styles.show : ''
-              }`}
+              } ${isDark ? styles.DarkMode : ''}`}
             >
               <ul>
                 {regions.length > 0 ? (

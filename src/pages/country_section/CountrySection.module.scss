@@ -1,4 +1,5 @@
-main {
+.main {
+  transition: all 0.5s ease;
   .main_container {
     max-width: 1440px;
     margin: 0 auto;
@@ -19,6 +20,7 @@ main {
           background-color: #ffffff;
           border-radius: 8px;
           box-shadow: 0px 20px 20px 40px #00000008;
+          transition: all 0.5s ease;
 
           .imgBox {
             width: 264px;
@@ -36,14 +38,26 @@ main {
           }
 
           .info_box {
-            h2 {
+            .h2 {
               margin: 24px;
               font-family: 'Nunito Sans', sans-serif;
               font-size: 18px;
               font-weight: 800;
               line-height: 26px;
               text-align: left;
+              color: #111517;
+              transition: all 0.5s ease;
+
+              &:hover {
+                text-decoration: underline;
+              }
             }
+            .h2 {
+              &.DarkMode {
+                color: #ffffff;
+              }
+            }
+
             .country_info {
               margin: 16px 0px 0px 24px;
 
@@ -68,6 +82,14 @@ main {
             }
           }
         }
+        .country_Card {
+          &.DarkMode {
+            background: #2b3844;
+            box-shadow: 0px 0px 7px 2px #00000008;
+            color: #ffffff;
+          }
+        }
+
         .buttons_continer {
           width: 100%;
           display: flex;
@@ -75,14 +97,15 @@ main {
           margin-bottom: 45px;
 
           .buttons_content {
-            width: 300px;
+            width: 500px;
             display: flex;
             justify-content: space-between;
             align-items: center;
 
-            button {
+            .button {
               cursor: pointer;
-              width: 100px;
+              width: 120px;
+              // width: 100px;
               height: 56px;
               border: none;
               border-radius: 5px;
@@ -96,21 +119,30 @@ main {
               div {
                 width: 12px;
                 height: 12px;
+                margin-right: 20px;
 
                 .perv_arrow {
-                  margin-right: 10px;
                   object-fit: contain;
                   width: 12px;
                   height: 12px;
                   transform: rotate(90deg);
                 }
               }
+
+              span {
+                padding: 10px;
+              }
               div {
                 width: 12px;
                 height: 12px;
+                margin-left: 20px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
 
                 .next_arrow {
                   object-fit: contain;
+
                   width: 12px;
                   height: 12px;
                   transform: rotate(-90deg);
@@ -121,9 +153,21 @@ main {
                 opacity: 0.5;
               }
             }
+            .button {
+              &.DarkMode {
+                background-color: #2b3844;
+                color: #ffffff;
+                box-shadow: 0px 2px 9px 0px #0000000e;
+              }
+            }
           }
         }
       }
     }
+  }
+}
+.main {
+  &.DarkMode {
+    background-color: #202c36;
   }
 }

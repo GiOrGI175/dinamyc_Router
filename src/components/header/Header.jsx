@@ -1,23 +1,39 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import ThemeContext from '../useContext/themeContext';
 
-import Light_moon from '/public/LightMode_moon.svg';
+import Light_moon from '/LightMode_moon.svg';
+import Dark_moon from '/DarkMode_moon.svg';
 
 import styles from './Header.module.scss';
 
 const Header = () => {
+  const { isDark, toggleTheme } = useContext(ThemeContext);
+
   return (
-    <header>
+    <header className={`${styles.header} ${isDark ? styles['DarkMode'] : ''}`}>
       <div className={styles.header_container}>
         <div className={styles.header_content}>
           <div>
-            <p>Where in the world?</p>
+            <p
+              className={`${styles.Main_Pharagraph} ${
+                isDark ? styles['DarkMode'] : ''
+              }`}
+            >
+              Where in the world?
+            </p>
           </div>
           <div>
-            <button>
+            <button onClick={toggleTheme}>
               <div>
-                <img src={Light_moon} alt='moon' />
+                <img src={isDark ? Dark_moon : Light_moon} alt='moon' />
               </div>
-              <span>Dark Mode</span>
+              <span
+                className={`${styles.Dark_Mode} ${
+                  isDark ? styles['DarkMode'] : ''
+                }`}
+              >
+                Dark Mode
+              </span>
             </button>
           </div>
         </div>

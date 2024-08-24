@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useNavigate, useParams, Link } from 'react-router-dom';
+import ThemeContext from '../../components/useContext/themeContext';
 import arrow from '/arrow.svg';
 import styles from './CountrySection.module.scss';
 import FilterBtn from '../../components/filterButton/FilterBtn';
@@ -11,6 +12,8 @@ const CountrySection = () => {
   const [error, setError] = useState(null);
   const [selectedRegion, setSelectedRegion] = useState('');
   const [totalitems, setTotalitems] = useState(0);
+
+  const { isDark } = useContext(ThemeContext);
 
   const itemsPerPage = 8;
   const navigate = useNavigate();
@@ -67,7 +70,7 @@ const CountrySection = () => {
   };
 
   return (
-    <main>
+    <main className={`${styles.main} ${isDark ? styles['DarkMode'] : ''}`}>
       <FilterBtn
         arrow={arrow}
         onRegionSelect={handleRegionSelect}
@@ -85,7 +88,9 @@ const CountrySection = () => {
                 currenItems.map((country) => (
                   <div
                     key={country.name.common}
-                    className={styles.country_Card}
+                    className={`${styles.country_Card} ${
+                      isDark ? styles['DarkMode'] : ''
+                    }`}
                   >
                     <div className={styles.imgBox}>
                       <img
@@ -94,8 +99,17 @@ const CountrySection = () => {
                       />
                     </div>
                     <div className={styles.info_box}>
-                      <Link to={`/posts/${currentPage}/${country.name.common}`}>
-                        <h2>{country.name.common}</h2>
+                      <Link
+                        to={`/posts/${currentPage}/${country.name.common}`}
+                        style={{ textDecoration: 'none' }}
+                      >
+                        <h2
+                          className={`${styles.h2} ${
+                            isDark ? styles['DarkMode'] : ''
+                          }`}
+                        >
+                          {country.name.common}
+                        </h2>
                       </Link>
                       <div className={styles.country_info}>
                         <p>
@@ -120,6 +134,9 @@ const CountrySection = () => {
                   <button
                     onClick={() => handlePageChange(currentPage - 1)}
                     disabled={currentPage === 1}
+                    className={`${styles.button} ${
+                      isDark ? styles['DarkMode'] : ''
+                    }`}
                   >
                     <div>
                       <img
@@ -128,7 +145,7 @@ const CountrySection = () => {
                         className={styles.perv_arrow}
                       />
                     </div>
-                    Previous
+                    <span> Previous</span>
                   </button>
                   <span>
                     Page {currentPage} of {totalPages}
@@ -136,8 +153,11 @@ const CountrySection = () => {
                   <button
                     onClick={() => handlePageChange(currentPage + 1)}
                     disabled={currentPage === totalPages}
+                    className={`${styles.button} ${
+                      isDark ? styles['DarkMode'] : ''
+                    }`}
                   >
-                    Next
+                    <span> Next</span>
                     <div>
                       <img
                         src={arrow}

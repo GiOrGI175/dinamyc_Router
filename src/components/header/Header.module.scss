@@ -1,6 +1,7 @@
 body {
-  header {
+  .header {
     box-shadow: 0px 2px 4px 0px #0000000e;
+    transition: all 0.5s ease;
 
     .header_container {
       max-width: 1440px;
@@ -16,12 +17,17 @@ body {
 
         div {
           transition: all 0.5s ease;
-          p {
+          .Main_Pharagraph {
             font-family: 'Nunito Sans', sans-serif;
             font-size: 24px;
             font-weight: 800;
             line-height: 32.74px;
             text-align: left;
+          }
+          .Main_Pharagraph {
+            &.DarkMode {
+              color: #ffffff;
+            }
           }
 
           &:hover {
@@ -40,7 +46,7 @@ body {
                 height: 20px;
               }
             }
-            span {
+            .Dark_Mode {
               margin-left: 8px;
               font-family: 'Nunito Sans', sans-serif;
               font-size: 16px;
@@ -48,9 +54,21 @@ body {
               line-height: 21.82px;
               text-align: left;
             }
+            .Dark_Mode {
+              &.DarkMode {
+                color: #ffffff;
+              }
+            }
           }
         }
       }
+    }
+  }
+
+  .header {
+    &.DarkMode {
+      background-color: #2b3844;
+      box-shadow: 0px 2px 4px 0px #0000000e;
     }
   }
 }
