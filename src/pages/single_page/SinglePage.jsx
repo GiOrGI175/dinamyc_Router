@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 import styles from './SinglePage.module.scss';
+
+import light_backArrow from '/LightMode_back_arrow.svg';
 
 const SinglePage = () => {
   const [countrys, setCountrys] = useState([]);
@@ -42,6 +44,12 @@ const SinglePage = () => {
 
   console.log(countrys);
 
+  const navigate = useNavigate();
+
+  const GoBack = () => {
+    navigate(-1);
+  };
+
   const renderInfo = (info) => {
     if (Array.isArray(info)) {
       return info.length > 0 ? info.join(', ') : 'No Information Here';
@@ -59,17 +67,22 @@ const SinglePage = () => {
   };
 
   const renderBorderCountrys = (info) => {
-    if (Array.isArray(info) && info.length > 0) {
-      return info.join(', ');
-    } else if (
-      info &&
-      typeof info === 'object' &&
-      Object.keys(info).length > 0
-    ) {
-      return Object.values(info).join(', ');
+    const result = [];
+    if (info && typeof info === 'object' && Object.keys(info).length > 0) {
+      const values = Object.values(info);
+      for (let i = 0; i < values.length; i++) {
+        result.push(
+          <div key={`span-${i}`}>
+            {' '}
+            <span>{values[i]}</span>
+          </div>
+        );
+      }
     } else {
-      return 'No Information Here';
+      result.push(<span key='no-info'>No Information Here</span>);
     }
+
+    return result;
   };
 
   const renderCurrencies = (currencies) => {
@@ -96,10 +109,17 @@ const SinglePage = () => {
       <div className={styles.section_container}>
         <div className={styles.section_content}>
           <div className={styles.button_container}>
-            <button>Go Back</button>
+            <button onClick={GoBack}>
+              <div>
+                <img src={light_backArrow} alt='arrow' />
+              </div>
+              Back
+            </button>
           </div>
           {loading ? (
-            <div>Loading...</div>
+            <div className={styles.loading_container}>
+              <span>Loading...</span>
+            </div>
           ) : error ? (
             <p>{error}</p>
           ) : countryToUse ? (
@@ -148,19 +168,12 @@ const SinglePage = () => {
                     </p>
                   </div>
                 </div>
-                {/* <div className={styles.Info_continer_3}>
+                <div className={styles.Info_continer_3}>
                   <p>
                     Border Countries:
-                    {countryToUse.borders.map((border, index) => (
-                      <span key={index}>
-                        {renderBorderCountrys(border)}
-                        {index < countryToUse.borders.length - 1
-                          ? ', '
-                          : ''}{' '}
-                      </span>
-                    ))}
+                    {renderBorderCountrys(countryToUse.borders)}
                   </p>
-                </div> */}
+                </div>
               </div>
             </div>
           ) : (

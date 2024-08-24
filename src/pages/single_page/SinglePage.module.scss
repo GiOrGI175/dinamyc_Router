@@ -7,15 +7,54 @@
     height: 80px;
     padding: 0px 80px;
 
+    .loading_container {
+      height: 401px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      span {
+        font-size: 80px;
+        font-weight: 700;
+      }
+    }
+
     .button_container {
       padding-top: 80px;
+
+      button {
+        div {
+          margin-right: 10px;
+        }
+        cursor: pointer;
+        width: 136px;
+        height: 40px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 5px;
+        box-shadow: 0px 0px 7px 0px #0000004b;
+        border: none;
+        background-color: #ffffff;
+
+        font-family: 'Nunito Sans', sans-serif;
+        font-size: 16px;
+        font-weight: 300;
+        line-height: 20px;
+        text-align: left;
+        transition: all 0.5s ease;
+
+        &:hover {
+          opacity: 0.5;
+        }
+      }
     }
 
     .country_Card {
       width: 100%;
       max-width: 100%;
       margin-top: 80px;
-      border: 1px solid pink;
+      // border: 1px solid pink;
       // padding-top: 80px;
       display: flex;
       align-items: center;
@@ -33,6 +72,7 @@
           max-height: 401px;
           border-radius: 8px;
           object-fit: cover;
+          box-shadow: 0px 0px 4px 0px #0000004b;
         }
       }
 
@@ -94,24 +134,40 @@
         .Info_continer_3 {
           margin-top: 68px;
           p {
+            display: flex;
             font-family: 'Nunito Sans', sans-serif;
             font-size: 16px;
             font-weight: 600;
             line-height: 24px;
             text-align: left;
 
-            span {
-              margin: 10px;
+            div:first-child {
+              margin-left: 16px;
+            }
+
+            div:not(:first-child) {
+              margin-left: 10px;
+            }
+
+            div {
               width: 96px;
               height: 28px;
-              border: 1px solid #979797;
+
+              display: flex;
+              justify-content: center;
+              align-items: center;
+
               box-shadow: 0px 0px 4px 1px #0000001b;
+
               background-color: #ffffff;
-              font-family: 'Nunito Sans', sans-serif;
-              font-size: 16px;
-              font-weight: 400;
-              line-height: 24px;
-              text-align: left;
+              span {
+                font-family: 'Nunito Sans', sans-serif;
+                font-size: 14px;
+                font-weight: 300;
+                line-height: 19.1px;
+                text-align: left;
+                color: #111517;
+              }
             }
           }
         }
