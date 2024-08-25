@@ -199,8 +199,10 @@ const SinglePage = () => {
                 </div>
                 <div className={styles.Info_continer_3}>
                   <p>
-                    Border Countries:
-                    {renderBorderCountrys(countryToUse.borders)}
+                    Border Countries:{' '}
+                    <div className={styles.borders_continer}>
+                      {renderBorderCountrys(countryToUse.borders)}
+                    </div>
                   </p>
                 </div>
               </div>

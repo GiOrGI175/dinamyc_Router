@@ -10,6 +10,13 @@
     padding: 0px 80px;
     display: flex;
     justify-content: end;
+
+    @media (max-width: 786px) {
+      justify-content: center;
+
+      padding: 0px 0px;
+    }
+
     div {
       .button {
         cursor: pointer;

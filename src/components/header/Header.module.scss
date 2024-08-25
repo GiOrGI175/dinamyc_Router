@@ -15,6 +15,10 @@ body {
         justify-content: space-between;
         align-items: center;
 
+        @media (max-width: 475px) {
+          padding: 0px 16px;
+        }
+
         div {
           transition: all 0.5s ease;
           .Main_Pharagraph {
@@ -23,6 +27,12 @@ body {
             font-weight: 800;
             line-height: 32.74px;
             text-align: left;
+
+            @media (max-width: 768px) {
+              font-size: 14px;
+              font-weight: 800;
+              line-height: 20px;
+            }
           }
           .Main_Pharagraph {
             &.DarkMode {
@@ -44,6 +54,11 @@ body {
               img {
                 width: 20px;
                 height: 20px;
+
+                @media (max-width: 768px) {
+                  width: 16px;
+                  height: 16px;
+                }
               }
             }
             .Dark_Mode {
@@ -53,6 +68,11 @@ body {
               font-weight: 600;
               line-height: 21.82px;
               text-align: left;
+
+              @media (max-width: 768px) {
+                font-size: 12px;
+                line-height: 16.37px;
+              }
             }
             .Dark_Mode {
               &.DarkMode {
