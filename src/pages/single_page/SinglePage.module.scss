@@ -1,177 +1,209 @@
-.section_container {
-  max-width: 1440px;
-  margin: 0 auto;
+.section {
+  height: 100vh;
+  transition: all 0.5s ease;
+  .section_container {
+    max-width: 1440px;
+    margin: 0 auto;
 
-  .section_content {
-    width: 100%;
-    height: 80px;
-    padding: 0px 80px;
+    .section_content {
+      width: 100%;
+      height: 80px;
+      padding: 0px 80px;
 
-    .loading_container {
-      height: 401px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-
-      span {
-        font-size: 80px;
-        font-weight: 700;
-      }
-    }
-
-    .button_container {
-      padding-top: 80px;
-
-      button {
-        div {
-          margin-right: 10px;
-        }
-        cursor: pointer;
-        width: 136px;
-        height: 40px;
+      .loading_container {
+        height: 401px;
         display: flex;
         justify-content: center;
         align-items: center;
-        border-radius: 5px;
-        box-shadow: 0px 0px 7px 0px #0000004b;
-        border: none;
-        background-color: #ffffff;
 
-        font-family: 'Nunito Sans', sans-serif;
-        font-size: 16px;
-        font-weight: 300;
-        line-height: 20px;
-        text-align: left;
-        transition: all 0.5s ease;
-
-        &:hover {
-          opacity: 0.5;
+        .span {
+          font-size: 80px;
+          font-weight: 700;
         }
-      }
-    }
-
-    .country_Card {
-      width: 100%;
-      max-width: 100%;
-      margin-top: 80px;
-      // border: 1px solid pink;
-      // padding-top: 80px;
-      display: flex;
-      align-items: center;
-
-      .imgBox {
-        width: 100%;
-        // margin-right: 120px;
-        display: flex;
-        justify-content: center;
-
-        img {
-          margin-right: 120px;
-          width: 100%;
-          max-width: 560px;
-          max-height: 401px;
-          border-radius: 8px;
-          object-fit: cover;
-          box-shadow: 0px 0px 4px 0px #0000004b;
-        }
-      }
-
-      .country_info {
-        max-width: 598px;
-        max-height: 323px;
-
-        width: 100%;
-
-        .country_NameBox {
-          h1 {
-            margin-bottom: 23px;
-            font-family: 'Nunito Sans', sans-serif;
-            font-size: 32px;
-            font-weight: 800;
-            line-height: 43.65px;
-            text-align: left;
+        .span {
+          &.DarkMode {
+            color: #ffffff;
           }
         }
-        .flex_box {
+      }
+
+      .button_container {
+        padding-top: 80px;
+
+        .button {
+          div {
+            margin-right: 10px;
+          }
+          cursor: pointer;
+          width: 136px;
+          height: 40px;
           display: flex;
-          justify-content: space-between;
+          justify-content: center;
+          align-items: center;
+          border-radius: 5px;
+          box-shadow: 0px 0px 7px 0px #0000004b;
+          border: none;
+          background-color: #ffffff;
 
-          .Info_continer_1 {
-            p {
+          font-family: 'Nunito Sans', sans-serif;
+          font-size: 16px;
+          font-weight: 300;
+          line-height: 20px;
+          text-align: left;
+          transition: all 0.5s ease;
+
+          &:hover {
+            opacity: 0.5;
+          }
+
+          &.DarkMode {
+            background: #2b3844;
+            box-shadow: 0px 2px 9px 0px #0000000e;
+            color: #ffffff;
+          }
+        }
+      }
+
+      .country_Card {
+        width: 100%;
+        max-width: 100%;
+        margin-top: 80px;
+        // border: 1px solid pink;
+        // padding-top: 80px;
+        display: flex;
+        align-items: center;
+
+        .imgBox {
+          width: 100%;
+          // margin-right: 120px;
+          display: flex;
+          justify-content: center;
+
+          img {
+            margin-right: 120px;
+            width: 100%;
+            max-width: 560px;
+            max-height: 401px;
+            border-radius: 8px;
+            object-fit: cover;
+            box-shadow: 0px 0px 4px 0px #0000004b;
+          }
+        }
+
+        .country_info {
+          max-width: 598px;
+          max-height: 323px;
+
+          width: 100%;
+
+          .country_NameBox {
+            h1 {
+              margin-bottom: 23px;
               font-family: 'Nunito Sans', sans-serif;
-              font-size: 16px;
-              font-weight: 600;
-              line-height: 32px;
+              font-size: 32px;
+              font-weight: 800;
+              line-height: 43.65px;
               text-align: left;
+            }
+          }
+          .flex_box {
+            display: flex;
+            justify-content: space-between;
 
-              span {
+            .Info_continer_1 {
+              p {
                 font-family: 'Nunito Sans', sans-serif;
                 font-size: 16px;
-                font-weight: 400;
+                font-weight: 600;
                 line-height: 32px;
                 text-align: left;
+
+                span {
+                  font-family: 'Nunito Sans', sans-serif;
+                  font-size: 16px;
+                  font-weight: 400;
+                  line-height: 32px;
+                  text-align: left;
+                }
+              }
+            }
+            .Info_continer_2 {
+              p {
+                font-family: 'Nunito Sans', sans-serif;
+                font-size: 16px;
+                font-weight: 600;
+                line-height: 32px;
+                text-align: left;
+
+                span {
+                  font-family: 'Nunito Sans', sans-serif;
+                  font-size: 16px;
+                  font-weight: 400;
+                  line-height: 32px;
+                  text-align: left;
+                }
               }
             }
           }
-          .Info_continer_2 {
+          .Info_continer_3 {
+            margin-top: 68px;
             p {
+              display: flex;
               font-family: 'Nunito Sans', sans-serif;
               font-size: 16px;
               font-weight: 600;
-              line-height: 32px;
+              line-height: 24px;
               text-align: left;
 
-              span {
-                font-family: 'Nunito Sans', sans-serif;
-                font-size: 16px;
-                font-weight: 400;
-                line-height: 32px;
-                text-align: left;
+              div:first-child {
+                margin-left: 16px;
+              }
+
+              div:not(:first-child) {
+                margin-left: 10px;
+              }
+
+              .Borders {
+                width: 96px;
+                height: 28px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                box-shadow: 0px 0px 4px 1px #0000001b;
+                background-color: #ffffff;
+                transition: all 0.5s ease;
+
+                &.DarkMode {
+                  background-color: #2b3844;
+                }
+
+                .BordersTxT {
+                  font-family: 'Nunito Sans', sans-serif;
+                  font-size: 14px;
+                  font-weight: 300;
+                  line-height: 19.1px;
+                  text-align: left;
+                  color: #111517;
+
+                  &.DarkMode {
+                    color: #ffffff;
+                  }
+                }
               }
             }
           }
         }
-        .Info_continer_3 {
-          margin-top: 68px;
-          p {
-            display: flex;
-            font-family: 'Nunito Sans', sans-serif;
-            font-size: 16px;
-            font-weight: 600;
-            line-height: 24px;
-            text-align: left;
-
-            div:first-child {
-              margin-left: 16px;
-            }
-
-            div:not(:first-child) {
-              margin-left: 10px;
-            }
-
-            div {
-              width: 96px;
-              height: 28px;
-
-              display: flex;
-              justify-content: center;
-              align-items: center;
-
-              box-shadow: 0px 0px 4px 1px #0000001b;
-
-              background-color: #ffffff;
-              span {
-                font-family: 'Nunito Sans', sans-serif;
-                font-size: 14px;
-                font-weight: 300;
-                line-height: 19.1px;
-                text-align: left;
-                color: #111517;
-              }
-            }
+        .country_info {
+          &.DarkMode {
+            color: #ffffff;
           }
         }
       }
     }
+  }
+}
+section {
+  &.DarkMode {
+    background-color: #202c36;
   }
 }

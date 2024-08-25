@@ -1,9 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import ThemeContext from '../../components/useContext/themeContext';
 
 import styles from './SinglePage.module.scss';
 
 import light_backArrow from '/LightMode_back_arrow.svg';
+import dark_backArroe from '/DarkMode_bach_arrow.svg';
 
 const SinglePage = () => {
   const [countrys, setCountrys] = useState([]);
@@ -11,6 +13,8 @@ const SinglePage = () => {
   const [error, setError] = useState(null);
 
   const { country } = useParams();
+
+  const { isDark } = useContext(ThemeContext);
 
   console.log(useParams());
 
@@ -72,9 +76,18 @@ const SinglePage = () => {
       const values = Object.values(info);
       for (let i = 0; i < values.length; i++) {
         result.push(
-          <div key={`span-${i}`}>
+          <div
+            key={`span-${i}`}
+            className={`${styles.Borders} ${isDark ? styles['DarkMode'] : ''}`}
+          >
             {' '}
-            <span>{values[i]}</span>
+            <span
+              className={`${styles.BordersTxT} ${
+                isDark ? styles['DarkMode'] : ''
+              }`}
+            >
+              {values[i]}
+            </span>
           </div>
         );
       }
@@ -105,20 +118,32 @@ const SinglePage = () => {
   const countryToUse = countrys.length > 1 ? countrys[1] : countrys[0] || null;
 
   return (
-    <section>
+    <section
+      className={`${styles.section} ${isDark ? styles['DarkMode'] : ''}`}
+    >
       <div className={styles.section_container}>
         <div className={styles.section_content}>
           <div className={styles.button_container}>
-            <button onClick={GoBack}>
+            <button
+              onClick={GoBack}
+              className={`${styles.button} ${isDark ? styles['DarkMode'] : ''}`}
+            >
               <div>
-                <img src={light_backArrow} alt='arrow' />
+                <img
+                  src={isDark ? dark_backArroe : light_backArrow}
+                  alt='arrow'
+                />
               </div>
               Back
             </button>
           </div>
           {loading ? (
             <div className={styles.loading_container}>
-              <span>Loading...</span>
+              <span
+                className={`${styles.span} ${isDark ? styles['DarkMode'] : ''}`}
+              >
+                Loading...
+              </span>
             </div>
           ) : error ? (
             <p>{error}</p>
@@ -131,7 +156,11 @@ const SinglePage = () => {
                   className={styles.flag_image}
                 />
               </div>
-              <div className={styles.country_info}>
+              <div
+                className={`${styles.country_info} ${
+                  isDark ? styles['DarkMode'] : ''
+                }`}
+              >
                 <div className={styles.country_NameBox}>
                   <h1>{countryToUse.name.common}</h1>
                 </div>

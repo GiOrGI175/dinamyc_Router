@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import { useNavigate, useParams, Link } from 'react-router-dom';
 import ThemeContext from '../../components/useContext/themeContext';
 import arrow from '/arrow.svg';
+import dark_arrow from '/DarkMode_Arrow.svg';
 import styles from './CountrySection.module.scss';
 import FilterBtn from '../../components/filterButton/FilterBtn';
 
@@ -86,23 +87,23 @@ const CountrySection = () => {
             <div className={styles.country_section}>
               {currenItems.length > 0 ? (
                 currenItems.map((country) => (
-                  <div
-                    key={country.name.common}
-                    className={`${styles.country_Card} ${
-                      isDark ? styles['DarkMode'] : ''
-                    }`}
+                  <Link
+                    to={`/posts/${currentPage}/${country.name.common}`}
+                    style={{ textDecoration: 'none' }}
                   >
-                    <div className={styles.imgBox}>
-                      <img
-                        src={country.flags.png}
-                        alt={`Flag of ${country.name.common}`}
-                      />
-                    </div>
-                    <div className={styles.info_box}>
-                      <Link
-                        to={`/posts/${currentPage}/${country.name.common}`}
-                        style={{ textDecoration: 'none' }}
-                      >
+                    <div
+                      key={country.name.common}
+                      className={`${styles.country_Card} ${
+                        isDark ? styles['DarkMode'] : ''
+                      }`}
+                    >
+                      <div className={styles.imgBox}>
+                        <img
+                          src={country.flags.png}
+                          alt={`Flag of ${country.name.common}`}
+                        />
+                      </div>
+                      <div className={styles.info_box}>
                         <h2
                           className={`${styles.h2} ${
                             isDark ? styles['DarkMode'] : ''
@@ -110,20 +111,20 @@ const CountrySection = () => {
                         >
                           {country.name.common}
                         </h2>
-                      </Link>
-                      <div className={styles.country_info}>
-                        <p>
-                          Population: <span>{country.population}</span>
-                        </p>
-                        <p>
-                          Region: <span>{country.region}</span>
-                        </p>
-                        <p>
-                          Capital: <span>{country.capital}</span>
-                        </p>
+                        <div className={styles.country_info}>
+                          <p>
+                            Population: <span>{country.population}</span>
+                          </p>
+                          <p>
+                            Region: <span>{country.region}</span>
+                          </p>
+                          <p>
+                            Capital: <span>{country.capital}</span>
+                          </p>
+                        </div>
                       </div>
                     </div>
-                  </div>
+                  </Link>
                 ))
               ) : (
                 <p>No countries found for the selected region.</p>
@@ -140,14 +141,18 @@ const CountrySection = () => {
                   >
                     <div>
                       <img
-                        src={arrow}
+                        src={isDark ? dark_arrow : arrow}
                         alt='Previous page'
                         className={styles.perv_arrow}
                       />
                     </div>
-                    <span> Previous</span>
+                    <div className={styles.Txt}> Previous</div>
                   </button>
-                  <span>
+                  <span
+                    className={`${styles.span} ${
+                      isDark ? styles['DarkMode'] : ''
+                    }`}
+                  >
                     Page {currentPage} of {totalPages}
                   </span>
                   <button
@@ -157,10 +162,10 @@ const CountrySection = () => {
                       isDark ? styles['DarkMode'] : ''
                     }`}
                   >
-                    <span> Next</span>
+                    <div className={styles.Txt}> Next</div>
                     <div>
                       <img
-                        src={arrow}
+                        src={isDark ? dark_arrow : arrow}
                         alt='Next page'
                         className={styles.next_arrow}
                       />
